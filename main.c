@@ -2,21 +2,13 @@
 #include <stdlib.h>
 #include "string.h"
 #include "hash.h"
-hash_p cria_tabela(int pag_mem_virtual){
-    hash_p table=malloc(sizeof(hash_s));
-    table->tamanho=pag_mem_virtual;
-    table->virtual = calloc(table->tamanho, sizeof(chamada_p));
-    // for(int i = 0; i < pag_mem_virtual ; i++){
-    // 	table->virtual[i] = ((pagina_s*)calloc(1, sizeof(pagina_s)));
-    // }
-    return table;
-}
+
 int main(int argc,char *argv[]){
     
     char  operacao,*aaaaarg; 
     unsigned addr,aux=0;
     unsigned page;
-    int tamanho_da_pagina;
+    unsigned tamanho_da_pagina;
     
     //system("clear");
     printf("Executando o simulador...\n");
@@ -35,17 +27,10 @@ int main(int argc,char *argv[]){
         s++;
     }
     printf("isso é s: %x \n", s);
-    tamanho_da_pagina=((atoi(argv[4])/atoi(argv[3])));
+    tamanho_da_pagina=((atoi(argv[4])*1024/atoi(argv[3])*1024));
     printf("Numero de paginas: %x\n",tamanho_da_pagina) ;
     
-    hash_p table= cria_tabela(tamanho_da_pagina);
-    // printf("tamnho da hash: %d\n", table->tamanho);
-    // for(int i=0;i<20;i++){
-    //     table->virtual[i].alterado = i*2;
-    // }
-    for(int i=0;i<80;i++){
-        printf("%d ",table->virtual[i].alterado);
-    }
+    
     printf("\n");
     FILE *arq= fopen(argv[2], "r");
     while(!feof(arq)){
@@ -59,6 +44,6 @@ int main(int argc,char *argv[]){
     printf("linhas no arquivo: %x\n",aux);
     
     fclose(arq);
-
+    //libera_tabela_hash(table);
     return 0;
 }
