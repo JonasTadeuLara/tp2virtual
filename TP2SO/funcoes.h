@@ -1,11 +1,12 @@
 typedef struct Relatorio
 {
 char arquivoEntrada;
-char tecnicaReposicao;//1-LRU 2-NRU 3- Segunda Chance
+int tecnicaReposicao;//1-LRU 2-NRU 3- Segunda Chance
 int tamanhoMemoria;
-int tamanhoPaginas;
+int tamanhoPagina;
 int paginasLidas;
 int paginasEscritas;
+int pesquisas;
 }Relatorio;
 
 void criaRelatorio();
@@ -27,8 +28,8 @@ typedef struct pagina
 //Variáveis globais
 Relatorio *relatorio;
 Pagina *memoriaFisica;
-int lru=0;
-
+#define lru 10;
+int
 /*OBS:
 
 1-funções comentadas nesse arquivo ainda devem ser feitas
